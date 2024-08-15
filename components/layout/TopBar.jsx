@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { SignOutButton, SignedIn, UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
+import { dark } from "@clerk/themes";
 
 const TopBar = () => {
   const router = useRouter();
@@ -36,14 +37,18 @@ const TopBar = () => {
         <div className="flex gap-3">
         <SignedIn>
             <SignOutButton>
-                <div className='flex cursor-pointer gap-4 items-center'>
+                <div className='flex cursor-pointer gap-4 items-center  md:hidden'>
                     <Logout sx={{color:"white" , fontSize:"32px"}}/>
                     <p className='text-body-bold text-light-1'></p>
                 </div>
             </SignOutButton>
         </SignedIn>
         <Link href='/'>
-            <Image src='/assets/phucmai.png' alt="profile photo" width={50} height={50} className="rounded-full md:hidden"></Image>
+         <div className="rounded-full md:hidden">
+         <UserButton  appearance={{baseTheme: dark}}  afterSignOutUrl="/sign-in" />
+         </div>
+        
+            
         </Link>
         </div>
       
